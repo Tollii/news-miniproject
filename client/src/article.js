@@ -4,10 +4,9 @@ import * as React from 'react';
 import { Component, sharedComponentData } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import { PlaceHolderArticle } from './shared';
 import { Row, Column, ButtonSuccess } from './widgets';
 import axios from 'axios';
-import { createHashHistory } from 'history';
+import {createHashHistory} from 'history';
 import {PlaceholderArticle} from "./shared";
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
@@ -16,7 +15,7 @@ export class PreviewArticle extends Component {
     render() {
         return (
             <div>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '25rem' }}>
                     <Card.Img variant="top" src={ this.props.image } alt="" />
                     <Card.Body>
                         <Card.Title>{ this.props.title }</Card.Title>

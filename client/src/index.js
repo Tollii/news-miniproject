@@ -24,7 +24,6 @@ export class Home extends Component {
     articlesPriority: PlaceholderArticle[] = [];
     topArticle: PlaceholderArticle = '';
 
-
     constructor(props: React.Component){
         super(props);
 
@@ -34,7 +33,6 @@ export class Home extends Component {
             this.articlesPriority = this.articles.filter( e => e.priority == 2);
             this.topArticle = this.articlesPriority[this.articlesPriority.length - 1];
         });
-
     }
 
     render(){
@@ -43,6 +41,7 @@ export class Home extends Component {
                 <div className='contentContainer'>
                     <Carousel>
                         {this.articlesPriority.map(e => (
+
                             <Carousel.Item>
                                 <NavLink to={'/article/' + e.id}>
                                     <img
@@ -56,8 +55,10 @@ export class Home extends Component {
                                     </Carousel.Caption>
                                 </NavLink>
                             </Carousel.Item>
+
                         ))}
                     </Carousel>
+
                     <div className='contentGrid'>
                         {this.articles.map( e => (
                             <PreviewArticle key={e.id}  id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
@@ -69,13 +70,12 @@ export class Home extends Component {
     }
 }
 
-
 const root = document.getElementById('root');
 if (root){
     ReactDOM.render(
         <HashRouter>
             <div>
-            <Header/>
+                <Header/>
                 <Route exact path="/" component={ Home } />
                 <Route exact path="/article/:id" component={ Article }/>
                 <Route exact path="/article/:id/edit" component={ ArticleEdit }/>
@@ -85,6 +85,3 @@ if (root){
         root
     );
 }
-
-
-
