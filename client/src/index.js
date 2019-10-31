@@ -9,6 +9,7 @@ import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { Alert, Card, Button, Row, Column } from './widgets';
 import { Navbar, Nav, Col, Container } from 'react-bootstrap';
 import { Header } from './header';
+import Carousel from 'react-bootstrap/Carousel'
 import { PreviewArticle, ArticleEdit } from './article';
 import { createHashHistory } from 'history';
 import { PlaceholderArticle } from './shared';
@@ -40,17 +41,22 @@ export class Home extends Component {
         return(
             <div>
                 <div className='contentContainer'>
+                    <Carousel>
+                        {this.articlesPriority.map(e => (
 
-
-
-
-                    <div className="jumbotron jumbotron-fluid"  >
-                        <img src={this.topArticle.image} alt="Go fuck yourself"/>
-                        <div className="container">
-                            <h1 className="display-4">{this.topArticle.title}</h1>
-                            <p className="lead">{this.topArticle.body}</p>
-                        </div>
-                    </div>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-50"
+                                    src={e.image}
+                                    alt="First slide"
+                                />
+                                <Carousel.Caption>
+                                    <h2>{e.title}</h2>
+                                    <h4>{e.body}</h4>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
 
                     <div className='contentGrid'>
                         {this.articles.map( e => (
