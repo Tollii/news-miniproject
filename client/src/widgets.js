@@ -5,6 +5,8 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 
+import {PlaceholderArticle} from "./shared";
+
 /**
  * Renders alert messages using Bootstrap classes.
  */
@@ -144,6 +146,8 @@ class ButtonDanger extends Component<{
     );
   }
 }
+
+
 
 /**
  * Renders a button using Bootstrap classes

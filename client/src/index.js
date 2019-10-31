@@ -7,9 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Component, sharedComponentData} from 'react-simplified';
 import { HashRouter, Route, NavLink } from 'react-router-dom';
 import { Alert, Card, Button, Row, Column } from './widgets';
+import Carousel from "react-bootstrap/Carousel";
 import { Navbar, Nav, Col, Container } from 'react-bootstrap';
 import { Header } from './header';
-import Carousel from 'react-bootstrap/Carousel'
 import { PreviewArticle, ArticleEdit } from './article';
 import { createHashHistory } from 'history';
 import { PlaceholderArticle } from './shared';
@@ -43,21 +43,21 @@ export class Home extends Component {
                 <div className='contentContainer'>
                     <Carousel>
                         {this.articlesPriority.map(e => (
-
                             <Carousel.Item>
-                                <img
-                                    className="d-block w-50"
-                                    src={e.image}
-                                    alt="First slide"
-                                />
-                                <Carousel.Caption>
-                                    <h2>{e.title}</h2>
-                                    <h4>{e.body}</h4>
-                                </Carousel.Caption>
+                                <NavLink to={'/article/' + e.id}>
+                                    <img
+                                        className="d-block w-50"
+                                        src={e.image}
+                                        alt="kys"
+                                    />
+                                    <Carousel.Caption>
+                                        <h2>{e.title}</h2>
+                                        <h4>{e.body}</h4>
+                                    </Carousel.Caption>
+                                </NavLink>
                             </Carousel.Item>
                         ))}
                     </Carousel>
-
                     <div className='contentGrid'>
                         {this.articles.map( e => (
                             <PreviewArticle key={e.id}  id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
