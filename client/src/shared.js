@@ -1,7 +1,7 @@
 // @flow
 
 export class PlaceholderArticle {
-    constructor(id: Number, title: String, body: String, text: String, date: String, image: String, priority: Number, category: String){
+    constructor(id: Number, title: string, body: string, text: string, date: string, image: string, priority: number, category: string){
         this.id = id;
         this.title = title;
         this.body = body;

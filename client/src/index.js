@@ -19,14 +19,19 @@ import { Article } from './article';
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
 export class Home extends Component {
-    articles = [];
+    articles: PlaceholderArticle[] = [];
+    articlesPriority: PlaceholderArticle[] = [];
+    topArticle: PlaceholderArticle = '';
 
-    constructor(props){
+
+    constructor(props: React.Component){
         super(props);
 
         axios.get('http://localhost:4000/article').then(res => {
             const data = res.data;
-            this.articles = data.map( e => new PlaceholderArticle(e.article_id, e.title, e.summary, e.article_text, e.created_at, e.image, 1, 'war'));
+            this.articles = data.map( e => new PlaceholderArticle(e.article_id, e.title, e.summary, e.article_text, e.created_at, e.image, e.priority, 'war'));
+            this.articlesPriority = this.articles.filter( e => e.priority == 2);
+            this.topArticle = this.articlesPriority[this.articlesPriority.length - 1];
         });
 
     }
@@ -35,6 +40,18 @@ export class Home extends Component {
         return(
             <div>
                 <div className='contentContainer'>
+
+
+
+
+                    <div className="jumbotron jumbotron-fluid"  >
+                        <img src={this.topArticle.image} alt="Go fuck yourself"/>
+                        <div className="container">
+                            <h1 className="display-4">{this.topArticle.title}</h1>
+                            <p className="lead">{this.topArticle.body}</p>
+                        </div>
+                    </div>
+
                     <div className='contentGrid'>
                         {this.articles.map( e => (
                             <PreviewArticle key={e.id}  id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />

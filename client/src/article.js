@@ -55,6 +55,7 @@ export class Article extends Component {
                 <img src={this.image} alt='' width="70%"/>
                 <h4>{this.summary}</h4>
                 <div className="postDateArticle">{this.created_at}</div>
+
                 <div className="breadtext">{this.article_text}</div>
             </div>
         );
@@ -64,7 +65,7 @@ export class Article extends Component {
         let article = null;
         axios.get('http://localhost:4000/article/' + this.props.match.params.id).then(res => {
             const data = res.data[0];
-            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, 1, 'war')
+            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, 1, data.category)
 
             if(!article){
                 alert('Something went wrong :/')
@@ -184,7 +185,7 @@ export class ArticleEdit extends Component {
         axios.get('http://localhost:4000/article/' + this.props.match.params.id).then( res => {
 
             const data = res.data[0];
-            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, 1, 'war')
+            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, data.priority, data.category);
 
             this.title = article.title;
             this.body = article.body;
@@ -199,7 +200,7 @@ export class ArticleEdit extends Component {
         let article = null;
         axios.get('http://localhost:4000/article/' + this.props.match.params.id).then( res => {
             const data = res.data[0];
-            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, 1, 'war')
+            article = new PlaceholderArticle(data.article_id, data.title, data.summary, data.article_text, data.created_at, data.image, data.priority, data.category);
         });
 
         let newCategory = document.querySelector('#editCategorySelector').value;
