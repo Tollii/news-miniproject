@@ -1,0 +1,69 @@
+.row{
+    margin-top: 10px;;
+}
+
+input[type=text]{
+    width: 100%;
+}
+
+body{
+    background-color: #9e9e9e;
+    overflow-x: hidden;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.contentGrid {
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    min-height: 800px;
+}
+
+.contentContainer {
+    margin: 50px;
+}
+
+.postDate {
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.postDateArticle{
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.article {
+    width: 400px;
+    height: 600px;
+    background-color: white;
+
+    border-radius: 5px;
+    display: table;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+    -moz-box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+    box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+}
+
+.articleContainer {
+    padding:50px;
+    margin: 50px;
+    text-align: center;
+    background: white;
+    -webkit-box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+    -moz-box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+    box-shadow: -1px 5px 5px -3px rgba(0, 0, 0, 0.66);
+}
+
+.navEdit{
+    text-align: right;
+}
