@@ -1,4 +1,4 @@
-import axios from 'axios';
+// @flow
 
 export class PlaceholderArticle {
     constructor(id: Number, title: String, body: String, text: String, date: String, image: String, priority: Number, category: String){

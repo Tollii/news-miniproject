@@ -1,3 +1,5 @@
+// @flow
+
 import * as React from 'react';
 import { Component, sharedComponentData } from 'react-simplified';
 import {  Card } from 'react-bootstrap';

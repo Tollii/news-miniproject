@@ -29,6 +29,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "16.9.11"
+    "@types/react": "16.9.11",
+    "flow-bin": "^0.111.0"
   }
 }
