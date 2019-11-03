@@ -4,7 +4,6 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
-
 // Reads MySQL config file
 const raw = fs.readFileSync('config.json');
 const config = JSON.parse(raw);
