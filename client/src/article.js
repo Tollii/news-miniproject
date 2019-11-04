@@ -220,6 +220,6 @@ export class ArticleEdit extends Component {
             console.log(res.data);
         });
 
-        history.push('/');
+        history.push('/article/' + this.props.match.params.id );
     }
 }
