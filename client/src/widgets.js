@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 
-import {PlaceholderArticle} from "./shared";
+import { PlaceholderArticle } from './shared';
 
 /**
  * Renders alert messages using Bootstrap classes.
@@ -147,8 +147,6 @@ class ButtonDanger extends Component<{
   }
 }
 
-
-
 /**
  * Renders a button using Bootstrap classes
  */
@@ -162,9 +160,9 @@ export class ButtonSuccess extends Component<{
 }> {
   render() {
     return (
-        <button type="button" className="btn btn-success" onClick={this.props.onClick}>
-          {this.props.children}
-        </button>
+      <button type="button" className="btn btn-success" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
     );
   }
 }
