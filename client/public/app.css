@@ -44,7 +44,17 @@ img{
 
 }
 
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
+.card-img-edit {
+    width: 600%;
+    height: auto;
+    object-fit: cover;
+}
 
 .postDateArticle{
     font-size: 12px;
@@ -77,4 +87,16 @@ img{
 
 .navEdit{
     text-align: right;
+}
+
+.gridLink{
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+}
+
+
+.control-link {
+    font-weight: bold;
+
 }
