@@ -8,6 +8,7 @@ CREATE TABLE article (
     article_text MEDIUMTEXT,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     image VARCHAR(200),
+    category VARCHAR(20),
     priority TINYINT,
 
     PRIMARY KEY (article_id),
