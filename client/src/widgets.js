@@ -5,8 +5,6 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 
-import { PlaceholderArticle } from './shared';
-
 /**
  * Renders alert messages using Bootstrap classes.
  */
@@ -27,7 +25,6 @@ export class Alert extends Component {
                 this.alerts.splice(i, 1);
               }}
             >
-              &times;
             </button>
           </div>
         ))}
@@ -134,7 +131,7 @@ export class Column extends Component<{ width?: number, right?: boolean, childre
   }
 }
 
-class ButtonDanger extends Component<{
+export class ButtonDanger extends Component<{
   onClick: () => mixed, // Any function
   children?: React.Node
 }> {

@@ -1,13 +1,11 @@
 //@flow
 
 import * as React from 'react';
-import { Component, sharedComponentData } from 'react-simplified';
-import { NavLink } from 'react-router-dom';
+import { Component } from 'react-simplified';
 import { Card } from 'react-bootstrap';
-import { Row, Column, ButtonSuccess } from './widgets';
-import axios from 'axios';
+import { Row, Column, ButtonSuccess, ButtonDanger } from './widgets';
 import { createHashHistory } from 'history';
-import { PlaceholderArticle } from './shared';
+import { articleService } from "./service";
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
@@ -15,83 +13,60 @@ export class PreviewArticle extends Component {
   render() {
     return (
       <div>
-        <Card style={{ width: '25rem' }}>
+        <Card style={{ width: '25rem' }} className="card-img-top">
+
           <Card.Img variant="top" src={this.props.image} alt="" />
           <Card.Body>
             <Card.Title>{this.props.title}</Card.Title>
             <Card.Text>{this.props.body}</Card.Text>
           </Card.Body>
+          <a href={"/#/article/" + this.props.id } className="btn btn-primary">Read more</a>
         </Card>
-        <div>
-          <NavLink to={'/article/' + this.props.id}>Read more</NavLink>
-        </div>
-        <div>
-          <NavLink className="navEdit" to={'/article/' + this.props.id + '/edit'}>
-            Edit
-          </NavLink>
-        </div>
       </div>
     );
   }
 }
-
 export class Article extends Component {
-  title = '';
-  summary = '';
-  article_text = '';
-  created_at = 0;
-  image = '';
-  category = '';
-  priority = '';
+  title: string = '';
+  body: string = '';
+  article_text: string = '';
+  created_at: string = '';
+  image: string = '';
+  priority: number = -1;
+  category: string = 'test';
 
   render() {
     return (
       <div className="articleContainer">
         <h1>{this.title}</h1>
-        <img src={this.image} alt="" width="70%" />
-        <h4>{this.summary}</h4>
+        <img src={this.image} alt="" width="70%"/>
+        <h4>{this.body}</h4>
         <div className="postDateArticle">{this.created_at}</div>
-
+        <div className="postDateArticle">{this.category}</div>
         <div className="breadtext">{this.article_text}</div>
       </div>
     );
   }
 
   mounted() {
-    let article = null;
-    axios.get('http://localhost:4000/article/' + this.props.match.params.id).then(res => {
-      const data = res.data[0];
-      article = new PlaceholderArticle(
-        data.article_id,
-        data.title,
-        data.summary,
-        data.article_text,
-        data.created_at,
-        data.image,
-        1,
-        data.category
-      );
-
-      if (!article) {
-        alert('Something went wrong :/');
-        history.push('/');
-      }
-
+    articleService.getArticle(this.props.match.params.id).then(article => {
       this.title = article.title;
-      this.summary = article.body;
-      this.article_text = article.text;
-      this.created_at = article.date;
+      this.body = article.summary;
+      this.article_text = article.article_text;
+      this.created_at = article.created_at;
+      this.priority = article.priority;
       this.image = article.image;
+      this.category = article.category;
     });
   }
 }
 
 export class ArticleEdit extends Component {
-  title = '';
-  body = '';
-  text = '';
-  image = '';
-  category = '';
+  title: string= '';
+  body: string = '';
+  article_text: string = '';
+  image: string = '';
+  category: string = '';
   form = null;
 
   render() {
@@ -118,18 +93,18 @@ export class ArticleEdit extends Component {
             <Column width={2}>Article text</Column>
             <Column width={4}>
               <textarea
-                value={this.text}
-                rows={5}
-                cols={65}
-                onChange={(event: htmlInput) => (this.text = event.target.value)}
-              />
+                  value={this.article_text}
+                  rows={5}
+                  cols={65}
+                  onChange={(event: htmlInput) => (this.article_text = event.target.value)}
+              >{this.article_text}</textarea>
             </Column>
           </Row>
           <Row>
             <Column width={2}>Image URL</Column>
             <Column width={4}>
               <input
-                type="textarea"
+                type="text"
                 value={this.image}
                 onChange={(event: htmlInput) => (this.image = event.target.value)}
               />
@@ -159,6 +134,7 @@ export class ArticleEdit extends Component {
             <Column width={6}>
               <br />
               <ButtonSuccess onClick={this.save}>Save</ButtonSuccess>
+              <ButtonDanger onClick={this.delete}>Delete</ButtonDanger>
             </Column>
           </Row>
         </form>
@@ -167,45 +143,24 @@ export class ArticleEdit extends Component {
   }
 
   mounted() {
-    let article = null;
-    axios.get('http://localhost:4000/article/' + this.props.match.params.id).then(res => {
-      const data = res.data[0];
-      article = new PlaceholderArticle(
-        data.article_id,
-        data.title,
-        data.summary,
-        data.article_text,
-        data.created_at,
-        data.image,
-        data.priority,
-        data.category
-      );
-
+    articleService.getArticle(this.props.match.params.id).then(article => {
       this.title = article.title;
-      this.body = article.body;
-      this.text = article.text;
+      this.body = article.summary;
+      this.article_text = article.article_text;
       this.image = article.image;
       this.category = article.category;
       this.priority = article.priority;
     });
   }
 
-  save() {
-    let article = null;
-    axios.get('http://localhost:4000/article/' + this.props.match.params.id).then(res => {
-      const data = res.data[0];
-      article = new PlaceholderArticle(
-        data.article_id,
-        data.title,
-        data.summary,
-        data.article_text,
-        data.created_at,
-        data.image,
-        data.priority,
-        data.category
-      );
+  delete() {
+    articleService.deleteArticle(this.props.match.params.id).then(res => {
+      console.log(res);
     });
+    history.push('/');
+  }
 
+  save() {
     let newCategory = document.querySelector('#editCategorySelector').value;
     let newPriority = document.querySelector('#editPrioritySelector').value;
 
@@ -213,18 +168,15 @@ export class ArticleEdit extends Component {
       alert('Choose a category and a priority');
       return;
     }
-    axios
-      .put('http://localhost:4000/article/' + this.props.match.params.id, {
-        title: this.title,
-        summary: this.body,
-        article_text: this.text,
-        image: this.image,
-        priority: newPriority
-      })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
+
+    articleService.updateArticle(this.props.match.params.id, {
+      "title": this.title,
+      "body": this.body,
+      "article_text": this.article_text,
+      "image": this.image,
+      "priority": newPriority,
+      "category": newCategory
+    });
 
     history.push('/article/' + this.props.match.params.id);
   }

@@ -1,19 +1,18 @@
 // @flow
 
 import * as React from 'react';
-import { Component, sharedComponentData } from 'react-simplified';
+import { Component } from 'react-simplified';
 import { Card } from 'react-bootstrap';
 import { Row, Column, ButtonSuccess } from './widgets';
-import { PlaceholderArticle } from './shared';
 import { createHashHistory } from 'history';
-import axios from 'axios';
+import { articleService } from "./service";
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
 export class New extends Component {
   title = '';
   body = '';
-  text = '';
+  article_text = '';
   image = '';
   category = '';
   form = null;
@@ -37,7 +36,7 @@ export class New extends Component {
           <Row>
             <Column width={2}>Article text</Column>
             <Column width={4}>
-              <textarea rows={5} cols={65} onChange={(event: htmlInput) => (this.text = event.target.value)} />
+              <textarea rows={5} cols={65} onChange={(event: htmlInput) => (this.article_text = event.target.value)} />
             </Column>
           </Row>
           <Row>
@@ -78,25 +77,27 @@ export class New extends Component {
   }
 
   save() {
-    let newCategory = document.querySelector('#editCategorySelector').value;
-    let newPriority = document.querySelector('#editPrioritySelector').value;
+
+    const newCategory = document.querySelector('#editCategorySelector').value;
+    const newPriority = document.querySelector('#editPrioritySelector').value;
+
+
 
     if (newCategory === 'Select category' || newPriority === 'Select priority') {
       alert('Choose a category and a priority');
       return;
     }
-    axios
-      .post('http://localhost:4000/article', {
-        title: this.title,
-        summary: this.body,
-        article_text: this.text,
-        image: this.image,
-        priority: newPriority
-      })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
+
+    articleService.createArticle({
+      "title": this.title,
+      "body": this.body,
+      "article_text": this.article_text,
+      "image": this.image,
+      "priority": newPriority,
+      "category": newCategory
+    });
+
+
 
     history.push('/');
   }
