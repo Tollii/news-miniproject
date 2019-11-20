@@ -29,7 +29,7 @@ class ArticleService {
     }
 
     deleteArticle(id: number){
-        axios.delete('http://localhost:4000/articles/' + id, {params: {id: toString(id)}}).then( res => {
+        axios.delete('http://localhost:4000/articles/' + id, {params: {id: id}}).then( res => {
             console.log(res);
         });
     }

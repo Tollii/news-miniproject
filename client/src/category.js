@@ -35,6 +35,7 @@ export class War extends Component {
             this.articles = this.temp.filter(e => e.category === "war");
         });
     }
+
     render() {
         return(
             <div className="contentGrid">
@@ -84,7 +85,6 @@ export class Other extends Component {
 export class Ting extends Component {
     articles: ArticleObject[] = [];
     temp: ArticleObject[] = [];
-
 
     constructor(props: React.Component) {
         super(props);

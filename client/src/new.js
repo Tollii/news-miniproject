@@ -78,10 +78,11 @@ export class New extends Component {
 
   save() {
 
-    const newCategory = document.querySelector('#editCategorySelector').value;
-    const newPriority = document.querySelector('#editPrioritySelector').value;
+    let e = document.querySelector('#editCategorySelector');
+    const newCategory = e instanceof HTMLSelectElement ? e.value : "";
 
-
+    e = document.querySelector('#editPrioritySelector');
+    let newPriority = e instanceof HTMLSelectElement ? e.value : "";
 
     if (newCategory === 'Select category' || newPriority === 'Select priority') {
       alert('Choose a category and a priority');
