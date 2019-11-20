@@ -17,7 +17,7 @@ before_script:
 run_tests:
   stage: test
   script:
-    - cddao && npm test
+    - cd dao && npm test
   artifacts:
     paths:
       - coverage/
