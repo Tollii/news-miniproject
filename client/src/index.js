@@ -50,22 +50,8 @@ export class Home extends Component {
     return (
         <div>
           <div className="contentContainer">
-            <Carousel>
-              {this.articlesPriority.map(e => (
-                  <Carousel.Item>
-                    <NavLink to={'/article/' + e.id}>
-                      <img className="d-block w-50" src={e.image} alt="kys" />
-                      <Carousel.Caption>
-                        <h2>{e.title}</h2>
-                        <h4>{e.body}</h4>
-                      </Carousel.Caption>
-                    </NavLink>
-                  </Carousel.Item>
-              ))}
-            </Carousel>
-
             <div className="contentGrid">
-              {this.articles.map(e => (
+              {this.articlesPriority.map(e => (
                   <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.created_at} />
               ))}
             </div>

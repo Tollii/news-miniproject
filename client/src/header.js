@@ -56,7 +56,7 @@ class LiveFeed extends Component {
             <div>
                 <div className="rollingNews">
                     <div id="rollText">
-                        {this.articles.map(e => `${e.body} - ${e.created_at.substring(0, 10)} ~ `)}
+                        {this.articles.map(e => `${e.title} - ${e.created_at.substring(0, 10)} ~ `)}
                     </div>
                 </div>
             </div>
@@ -78,7 +78,6 @@ class LiveFeed extends Component {
                 )
             );
         });
-
     }
 
     animateLiveFeed() : void{

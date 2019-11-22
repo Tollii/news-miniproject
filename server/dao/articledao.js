@@ -10,7 +10,7 @@ module.exports = class ArticleDao extends Dao {
 
   getAll(callback) {
     super.query(
-      "SELECT article_id, summary, title, article_text, created_at, image, priority, category FROM article;",
+      "SELECT article_id, summary, title, article_text, created_at, image, priority, category FROM article ORDER BY article_id DESC;",
       [],
       callback
     );

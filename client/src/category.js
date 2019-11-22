@@ -32,7 +32,7 @@ export class War extends Component {
                     e.category
                 )
             );
-            this.articles = this.temp.filter(e => e.category === "war");
+            this.articles = this.temp.filter(e => e.category === "war" ||  e.category === "War");
         });
     }
 
@@ -67,17 +67,19 @@ export class Other extends Component {
                     e.category
                 )
             );
-            this.articles = this.temp.filter(e => e.category === "other");
+            this.articles = this.temp.filter(e => e.category === "other" || e.category === "Other" );
         });
     }
 
     render() {
         return(
+          <div>
             <div className="contentGrid">
                 {this.articles.map(e => (
                     <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
                 ))}
             </div>
+        </div>
         );
     }
 }
