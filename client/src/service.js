@@ -4,6 +4,7 @@ import * as React from 'react';
 import axios from 'axios';
 
 class ArticleService {
+    newPosts = false;
 
     getArticles(){
         return axios.get('http://localhost:4000/articles').then(res => res.data);
