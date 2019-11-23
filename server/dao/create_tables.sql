@@ -11,4 +11,4 @@ CREATE TABLE article (
     category VARCHAR(20),
     priority TINYINT,
     PRIMARY KEY (article_id),
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
