@@ -24,8 +24,7 @@ export class Alert extends Component {
               onClick={() => {
                 this.alerts.splice(i, 1);
               }}
-            >
-            </button>
+            ></button>
           </div>
         ))}
       </>

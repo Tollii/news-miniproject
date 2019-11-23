@@ -5,7 +5,7 @@ import { Component } from 'react-simplified';
 import { Card } from 'react-bootstrap';
 import { Row, Column, ButtonSuccess } from './widgets';
 import { createHashHistory } from 'history';
-import { articleService } from "./service";
+import { articleService } from './service';
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
@@ -77,12 +77,11 @@ export class New extends Component {
   }
 
   save() {
-
     let e = document.querySelector('#editCategorySelector');
-    const newCategory = e instanceof HTMLSelectElement ? e.value : "";
+    const newCategory = e instanceof HTMLSelectElement ? e.value : '';
 
     e = document.querySelector('#editPrioritySelector');
-    let newPriority = e instanceof HTMLSelectElement ? e.value : "";
+    let newPriority = e instanceof HTMLSelectElement ? e.value : '';
 
     if (newCategory === 'Select category' || newPriority === 'Select priority') {
       alert('Choose a category and a priority');
@@ -90,15 +89,13 @@ export class New extends Component {
     }
 
     articleService.createArticle({
-      "title": this.title,
-      "body": this.body,
-      "article_text": this.article_text,
-      "image": this.image,
-      "priority": newPriority,
-      "category": newCategory
+      title: this.title,
+      body: this.body,
+      article_text: this.article_text,
+      image: this.image,
+      priority: newPriority,
+      category: newCategory
     });
-
-
 
     history.push('/');
   }

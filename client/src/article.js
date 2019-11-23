@@ -5,13 +5,11 @@ import { Component } from 'react-simplified';
 import { Card } from 'react-bootstrap';
 import { Row, Column, ButtonSuccess, ButtonDanger } from './widgets';
 import { createHashHistory } from 'history';
-import { articleService } from "./service";
+import { articleService } from './service';
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
-export class PreviewArticle extends Component <{id: number, title: string, body: string, image: string}> {
-
-
+export class PreviewArticle extends Component<{ id: number, title: string, body: string, image: string }> {
   render() {
     return (
       <div>
@@ -21,13 +19,15 @@ export class PreviewArticle extends Component <{id: number, title: string, body:
             <Card.Title>{this.props.title}</Card.Title>
             <Card.Text>{this.props.body}</Card.Text>
           </Card.Body>
-          <a href={"/#/article/" + this.props.id } className="btn btn-primary">Read more</a>
+          <a href={'/#/article/' + this.props.id} className="btn btn-primary">
+            Read more
+          </a>
         </Card>
       </div>
     );
   }
 }
-export class Article extends Component <{ match: { params :{ id: number } } }> {
+export class Article extends Component<{ match: { params: { id: number } } }> {
   title: string = '';
   body: string = '';
   article_text: string = '';
@@ -40,7 +40,7 @@ export class Article extends Component <{ match: { params :{ id: number } } }> {
     return (
       <div className="articleContainer">
         <h1>{this.title}</h1>
-        <img src={this.image} alt="" width="50%"/>
+        <img src={this.image} alt="" width="50%" />
         <h4>{this.body}</h4>
         <div className="postDateArticle">{this.created_at}</div>
         <div className="postDateArticle">{this.category}</div>
@@ -62,8 +62,8 @@ export class Article extends Component <{ match: { params :{ id: number } } }> {
   }
 }
 
-export class ArticleEdit extends Component <{ match: { params: { id: number} } }>{
-  title: string= '';
+export class ArticleEdit extends Component<{ match: { params: { id: number } } }> {
+  title: string = '';
   body: string = '';
   article_text: string = '';
   image: string = '';
@@ -95,11 +95,13 @@ export class ArticleEdit extends Component <{ match: { params: { id: number} } }
             <Column width={2}>Article text</Column>
             <Column width={4}>
               <textarea
-                  value={this.article_text}
-                  rows={5}
-                  cols={65}
-                  onChange={(event: htmlInput) => (this.article_text = event.target.value)}
-              >{this.article_text}</textarea>
+                value={this.article_text}
+                rows={5}
+                cols={65}
+                onChange={(event: htmlInput) => (this.article_text = event.target.value)}
+              >
+                {this.article_text}
+              </textarea>
             </Column>
           </Row>
           <Row>
@@ -161,18 +163,12 @@ export class ArticleEdit extends Component <{ match: { params: { id: number} } }
   }
 
   save() {
-
-    let newCategory: string = "";
-    let newPriority: string = "";
+    let newCategory: string = '';
+    let newPriority: string = '';
     let e = document.querySelector('#editCategorySelector');
-    if(e instanceof HTMLSelectElement) newCategory = e.value;
+    if (e instanceof HTMLSelectElement) newCategory = e.value;
     e = document.querySelector('#editPrioritySelector');
-    if(e instanceof  HTMLSelectElement) newPriority = e.value;
-
-
-
-
-
+    if (e instanceof HTMLSelectElement) newPriority = e.value;
 
     if (newCategory === 'Select category' || newPriority === 'Select priority') {
       alert('Choose a category and a priority');
@@ -180,12 +176,12 @@ export class ArticleEdit extends Component <{ match: { params: { id: number} } }
     }
 
     articleService.updateArticle(this.props.match.params.id, {
-      "title": this.title,
-      "body": this.body,
-      "article_text": this.article_text,
-      "image": this.image,
-      "priority": newPriority,
-      "category": newCategory
+      title: this.title,
+      body: this.body,
+      article_text: this.article_text,
+      image: this.image,
+      priority: newPriority,
+      category: newCategory
     });
 
     history.push('/article/' + this.props.match.params.id);
