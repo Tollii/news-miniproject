@@ -38,6 +38,7 @@ afterAll( () => {
 
 test('get all articles from db', done => {
     function callback(status, data) {
+        console.log("Test: get all articles from db");
         console.log('Test callback: status=' + status + ', data=' + JSON.stringify(data));
         expect(data.length).toBeGreaterThanOrEqual(2);
         done();

@@ -27,6 +27,7 @@ app.get("/articles", (req, res) => {
     });
 });
 
+
 app.get("/articles/:id", (req, res) => {
     console.log("Received GET-request from client");
     articleDao.getOne(req.params.id, (status, data) => {
