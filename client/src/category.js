@@ -33,7 +33,7 @@ export class Category extends Component<{ category: string }> {
       <div className="contentContainer">
         <div className="contentGrid">
           {this.articles.map(e => (
-            <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
+            <PreviewArticle key={e.id} id={e.id} title={e.title} body={e.body} image={e.image} date={e.created_at} />
           ))}
         </div>
       </div>
