@@ -2,7 +2,7 @@
 
 module.exports = class Dao {
   constructor(pool: mysql.Pool) {
-    this.pool: mysql.Pool = pool;
+    this.pool = pool;
   }
 
   query(sql, params, callback) {

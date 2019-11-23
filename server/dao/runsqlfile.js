@@ -3,7 +3,7 @@
 const mysql = require('mysql');
 const fs = require('fs');
 
-module.exports = function run(filename, pool: mysql.Pool, done) {
+module.exports = function run(filename, pool, done) {
     console.log('runsqlfile: reading file ' + filename);
     let sql = fs.readFileSync(filename, 'utf8');
     pool.getConnection( (err, connection) => {
