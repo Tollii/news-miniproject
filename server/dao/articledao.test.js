@@ -53,9 +53,9 @@ test('add one article from db', done => {
   }
   articleDao.createOne({
     "title": "yeet",
-    "summary": "yeet or get yeeted",
-    "article_text": "yote",
-    "priority": 1,
-    "category": "Other"
-  });
+      "summary": "yeet or get yeeted",
+      "article_text": "yote",
+      "priority": 1,
+      "category": "Other"
+  }, callback);
 });
