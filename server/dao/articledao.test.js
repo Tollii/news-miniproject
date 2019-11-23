@@ -51,45 +51,51 @@ test('add one article from db', done => {
     expect(status).toBe(200);
     done();
   }
-  articleDao.createOne({
-    "title": "yeet",
-      "summary": "yeet or get yeeted",
-      "article_text": "yote",
-      "priority": 1,
-      "category": "Other",
-      "image": "Internett.com"
-  }, callback);
+  articleDao.createOne(
+    {
+      title: 'yeet',
+      summary: 'yeet or get yeeted',
+      article_text: 'yote',
+      priority: 1,
+      category: 'Other',
+      image: 'Internett.com'
+    },
+    callback
+  );
 });
 
-test("delete article from db", done =>{
-  function callback(status, data){
-    console.log("Test callback: status=" + status + ", data.length=" + data.length);
+test('delete article from db', done => {
+  function callback(status, data) {
+    console.log('Test callback: status=' + status + ', data.length=' + data.length);
     expect(status).toBe(200);
-    done()
+    done();
   }
   articleDao.deleteOne(1, callback);
 });
 
-
-test("update article db", done =>{
-  function callback1(status, data){
-    console.log("Test callback: status=" + status + ", data.length="+ JSON.stringify(data));
+test('update article db', done => {
+  function callback1(status, data) {
+    console.log('Test callback: status=' + status + ', data.length=' + JSON.stringify(data));
     expect(status).toBe(200);
     done();
   }
   function callback2(status, data) {
-    console.log("Test callback: status=" + status + ", data.length="+JSON.stringify(data));
-    expect(data[0].title).toBe("yote");
+    console.log('Test callback: status=' + status + ', data.length=' + JSON.stringify(data));
+    expect(data[0].title).toBe('yote');
     done();
   }
 
-  articleDao.updateOne ({
-    "title": "yote",
-    "summary": "yeet or get yeeted",
-    "article_text": "yote",
-    "priority": 1,
-    "category": "Other",
-    "image": "Internett.com"
-  }, 1, callback1);
+  articleDao.updateOne(
+    {
+      title: 'yote',
+      summary: 'yeet or get yeeted',
+      article_text: 'yote',
+      priority: 1,
+      category: 'Other',
+      image: 'Internett.com'
+    },
+    1,
+    callback1
+  );
   articleDao.getOne(1, callback2);
 });

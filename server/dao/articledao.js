@@ -1,10 +1,10 @@
 // @flow
 
-const Dao = require("./dao.js");
+const Dao = require('./dao.js');
 module.exports = class ArticleDao extends Dao {
   getOne(id, callback) {
     super.query(
-      "SELECT article_id, title, summary, article_text, created_at, image, priority, category FROM article WHERE article_id = ?;",
+      'SELECT article_id, title, summary, article_text, created_at, image, priority, category FROM article WHERE article_id = ?;',
       [id],
       callback
     );
@@ -12,44 +12,29 @@ module.exports = class ArticleDao extends Dao {
 
   getAll(callback) {
     super.query(
-      "SELECT article_id, summary, title, article_text, created_at, image, priority, category FROM article ORDER BY article_id DESC;",
+      'SELECT article_id, summary, title, article_text, created_at, image, priority, category FROM article ORDER BY article_id DESC;',
       [],
       callback
     );
   }
 
   createOne(json, callback) {
-    const val = [
-      json.title,
-      json.summary,
-      json.article_text,
-      json.image,
-      json.priority,
-      json.category
-    ];
+    const val = [json.title, json.summary, json.article_text, json.image, json.priority, json.category];
     super.query(
-      "INSERT INTO article (title, summary, article_text, image, priority, category) VALUES (?,?,?,?,?,?);",
+      'INSERT INTO article (title, summary, article_text, image, priority, category) VALUES (?,?,?,?,?,?);',
       val,
       callback
     );
   }
 
   deleteOne(id, callback) {
-    super.query("DELETE FROM article WHERE article_id = ?", [id], callback);
+    super.query('DELETE FROM article WHERE article_id = ?', [id], callback);
   }
 
   updateOne(json, id, callback) {
-    const val = [
-      json.title,
-      json.summary,
-      json.article_text,
-      json.image,
-      json.priority,
-      json.category,
-      id
-    ];
+    const val = [json.title, json.summary, json.article_text, json.image, json.priority, json.category, id];
     super.query(
-      "UPDATE article SET title = ?, summary = ?, article_text = ?, image = ?, priority = ?, category = ? WHERE article_id = ?;",
+      'UPDATE article SET title = ?, summary = ?, article_text = ?, image = ?, priority = ?, category = ? WHERE article_id = ?;',
       val,
       callback
     );
