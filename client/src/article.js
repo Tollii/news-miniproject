@@ -117,7 +117,7 @@ export class ArticleEdit extends Component<{ match: { params: { id: number } } }
           <Row>
             <Column width={2}>Category</Column>
             <Column width={4}>
-              <select id="editCategorySelector">
+              <select id="editCategorySelector" value={this.category} onChange={(event) => this.priority = event.target.value}>
                 <option>Select category</option>
                 <option>War</option>
                 <option>Other</option>
@@ -127,7 +127,7 @@ export class ArticleEdit extends Component<{ match: { params: { id: number } } }
           <Row>
             <Column width={2}>Priority</Column>
             <Column width={4}>
-              <select id="editPrioritySelector">
+              <select id="editPrioritySelector" value={this.priority} onChange={(event) => this.priority = event.target.value}>
                 <option>Select priority</option>
                 <option>1</option>
                 <option>2</option>

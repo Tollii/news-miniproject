@@ -73,6 +73,7 @@ test('delete article from db', done => {
   articleDao.deleteOne(1, callback);
 });
 
+/*
 test('update article db', done => {
   function callback1(status, data) {
     console.log('Test callback: status=' + status + ', data.length=' + JSON.stringify(data));
@@ -99,3 +100,4 @@ test('update article db', done => {
   );
   articleDao.getOne(1, callback2);
 });
+*/
