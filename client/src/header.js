@@ -5,6 +5,10 @@ import io from 'socket.io-client';
 import { articleService } from './service';
 import { ArticleObject } from './shared';
 
+/*
+  Copied from Eric Younger with minor adjustment, with permission.
+ */
+
 export class Header extends Component {
   render() {
     return (
@@ -26,7 +30,7 @@ export class Header extends Component {
             </Nav>
             <Nav className="mr-auto">
               <Nav.Link href="#war">War</Nav.Link>
-              <Nav.Link href="#ting">??????</Nav.Link>
+              <Nav.Link href="#ting">Ting</Nav.Link>
               <Nav.Link href="#other">Other</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -60,7 +64,7 @@ class LiveFeed extends Component {
     return (
       <div>
         <div className="rollingNews">
-          <div id="rollText">{this.articles.map(e => `${e.title} - ${e.created_at.substring(0, 10)} ~ `)}</div>
+          <div id="rollText">{this.articles.map(e => `${e.title} - ${e.created_at.substring(0, 16).replace("T", " ")} ~ `)}</div>
         </div>
       </div>
     );

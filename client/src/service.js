@@ -4,6 +4,7 @@ import * as React from 'react';
 import axios from 'axios';
 
 class ArticleService {
+  articles = [];
   newPosts = false;
 
   getArticles() {

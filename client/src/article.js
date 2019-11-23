@@ -6,6 +6,7 @@ import { Card } from 'react-bootstrap';
 import { Row, Column, ButtonSuccess, ButtonDanger } from './widgets';
 import { createHashHistory } from 'history';
 import { articleService } from './service';
+
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
@@ -15,7 +16,7 @@ export class PreviewArticle extends Component<{ id: number, title: string, body:
       <div>
         <Card style={{ width: '25rem' }} className="card-img-top">
           <Card.Img variant="top" src={this.props.image} alt="" />
-          <Card.Body>
+          <Card.Body className="justify-content-center">
             <Card.Title>{this.props.title}</Card.Title>
             <Card.Text>{this.props.body}</Card.Text>
           </Card.Body>
@@ -34,7 +35,7 @@ export class Article extends Component<{ match: { params: { id: number } } }> {
   created_at: string = '';
   image: string = '';
   priority: number = -1;
-  category: string = 'test';
+  category: string = '';
 
   render() {
     return (
@@ -42,9 +43,9 @@ export class Article extends Component<{ match: { params: { id: number } } }> {
         <h1>{this.title}</h1>
         <img src={this.image} alt="" width="50%" />
         <h4>{this.body}</h4>
-        <div className="postDateArticle">{this.created_at}</div>
-        <div className="postDateArticle">{this.category}</div>
-        <div className="breadtext">{this.article_text}</div>
+          <div className="postDateArticle">{this.created_at.substring(0,16).replace("T", " ")}</div>
+          <div className="postDateArticle">{this.category}</div>
+          <div className="article-text">{this.article_text}</div>
       </div>
     );
   }
@@ -95,6 +96,7 @@ export class ArticleEdit extends Component<{ match: { params: { id: number } } }
             <Column width={2}>Article text</Column>
             <Column width={4}>
               <textarea
+                type="text"
                 value={this.article_text}
                 rows={5}
                 cols={65}
