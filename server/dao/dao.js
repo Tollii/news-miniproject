@@ -1,8 +1,8 @@
 // @flow
 
 module.exports = class Dao {
-  constructor(pool) {
-    this.pool = pool;
+  constructor(pool: mysql.Pool) {
+    this.pool: mysql.Pool = pool;
   }
 
   query(sql, params, callback) {
