@@ -45,26 +45,13 @@ class LiveFeed extends Component {
   value: number = 60;
   articles = [];
 
-  constructor(props) {
-    super(props);
-
-    const socket = io('http://localhost:4000');
-    socket.on('connect', function() {
-      console.log('connected');
-    });
-    socket.on('event', function(data) {});
-    socket.on('newArticle', e => {
-      console.log('newArticle');
-      articleService.newPosts = true;
-    });
-    socket.on('disconnect', function() {});
-  }
-
   render() {
     return (
       <div>
         <div className="rollingNews">
-          <div id="rollText">{this.articles.map(e => `${e.title} - ${e.created_at.substring(0, 16).replace("T", " ")} ~ `)}</div>
+          <div id="rollText">
+            {this.articles.map(e => `${e.title} - ${e.created_at.substring(0, 16).replace('T', ' ')} ~ `)}
+          </div>
         </div>
       </div>
     );

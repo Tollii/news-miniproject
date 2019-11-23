@@ -16,7 +16,7 @@ export class Edit extends Component {
     return (
       <div className="row">
         {this.articles.map(e => (
-          <div className="card-img-edit">
+          <div className="card-img-edit" id={e.id}>
             <div className="col-md-7 ">
               <a href="#" className="">
                 <img className="img-fluid rounded mb-3 mb-md-0 w-50" src={e.image} alt="" />

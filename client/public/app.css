@@ -114,8 +114,7 @@ img{
 
 .rollingNews {
     width: 180%;
-
-    height: 30px;
+    height: 25px;
     padding-top:2px;
     overflow-y: hidden;
     background-color: orange;
