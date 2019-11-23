@@ -10,5 +10,5 @@ CREATE TABLE article (
     image VARCHAR(200),
     category VARCHAR(20),
     priority TINYINT,
-    PRIMARY KEY (article_id),
+    PRIMARY KEY (article_id)
 );
