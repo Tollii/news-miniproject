@@ -59,3 +59,35 @@ test('add one article from db', done => {
       "category": "Other"
   }, callback);
 });
+
+test("delete article from db", done =>{
+  function callback(status, data){
+    console.log("Test callback: status=" + status + ", data.length="+data.length);
+    expect(status).toBe(200);
+    done()
+  }
+  articleDao.deleteOne(1, callback);
+});
+
+
+test("update article db", done =>{
+  function callback1(status, data){
+    console.log("Test callback: status=" + status + ", data.length="+ JSON.stringify(data));
+    expect(status).toBe(200);
+    done()
+  }
+  function callback2(status, data) {
+    console.log("Test callback: status=" + status + ", data.length="+JSON.stringify(data));
+    expect(data[0].title).toBe("yote");
+    done();
+  }
+
+  articleDao.updateOne {
+    "title": "yote",
+    "summary": "yeet or get yeeted",
+    "article_text": "yote",
+    "priority": 1,
+    "category": "Other"
+  }, 1, callback1());
+  articleDao.getOne(1, callback2);
+});
