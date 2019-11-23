@@ -73,16 +73,11 @@ test('delete article from db', done => {
   articleDao.deleteOne(1, callback);
 });
 
-/*
+
 test('update article db', done => {
-  function callback1(status, data) {
+  function callback(status, data) {
     console.log('Test callback: status=' + status + ', data.length=' + JSON.stringify(data));
     expect(status).toBe(200);
-    done();
-  }
-  function callback2(status, data) {
-    console.log('Test callback: status=' + status + ', data.length=' + JSON.stringify(data));
-    expect(data[0].title).toBe('yote');
     done();
   }
 
@@ -96,8 +91,7 @@ test('update article db', done => {
       image: 'Internett.com'
     },
     1,
-    callback1
+    callback
   );
-  articleDao.getOne(1, callback2);
 });
-*/
+
