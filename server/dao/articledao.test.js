@@ -62,7 +62,7 @@ test('add one article from db', done => {
 
 test("delete article from db", done =>{
   function callback(status, data){
-    console.log("Test callback: status=" + status + ", data.length="+data.length);
+    console.log("Test callback: status=" + status + ", data.length=" + data.length);
     expect(status).toBe(200);
     done()
   }
@@ -82,7 +82,7 @@ test("update article db", done =>{
     done();
   }
 
-  articleDao.updateOne {
+  articleDao.updateOne ({
     "title": "yote",
     "summary": "yeet or get yeeted",
     "article_text": "yote",
