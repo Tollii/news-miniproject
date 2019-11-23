@@ -30,10 +30,12 @@ export class Category extends Component<{ category: string }> {
   }
   render() {
     return (
-      <div className="contentGrid">
-        {this.articles.map(e => (
-          <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
-        ))}
+      <div className="contentContainer">
+        <div className="contentGrid">
+          {this.articles.map(e => (
+            <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.date} />
+          ))}
+        </div>
       </div>
     );
   }
