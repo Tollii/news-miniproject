@@ -18,48 +18,49 @@ import axios from 'axios';
 import { Article } from './article';
 import { Edit } from './edit';
 import { articleService } from "./service";
-import { War, Other, Ting } from './category';
+import { War, Other, Ting, Category } from './category';
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
-export class Home extends Component {
+export class Home extends Component <{body: string}>{
   articles: ArticleObject[] = [];
   articlesPriority: ArticleObject[] = [];
 
-  constructor(props: React.Component) {
-    super(props);
-
-    articleService.getArticles().then(data => {
-        this.articles = data.map( e =>
-            new ArticleObject(
-                e.article_id,
-                e.title,
-                e.summary,
-                e.article_text,
-                e.created_at,
-                e.image,
-                e.priority,
-                e.category
-          )
-      );
-      this.articlesPriority = this.articles.filter(e => e.priority === 1);
-    });
-  }
-
   render() {
-    return (
+      return (
         <div>
           <div className="contentContainer">
             <div className="contentGrid">
               {this.articlesPriority.map(e => (
-                  <PreviewArticle key={e.id} id={e.id} title={e.title} text={e.body} image={e.image} date={e.created_at} />
+                  <PreviewArticle key={e.id} id={e.id} title={e.title} body={e.body} image={e.image} date={e.created_at} />
               ))}
             </div>
           </div>
         </div>
     );
   }
+
+  mounted() {
+    articleService.getArticles().then(data => {
+      this.articles = data.map( e =>
+        new ArticleObject(
+          e.article_id,
+          e.title,
+          e.summary,
+          e.article_text,
+          e.created_at,
+          e.image,
+          e.priority,
+          e.category
+        )
+      );
+      this.articlesPriority = this.articles.filter(e => e.priority === 1);
+    });
+  }
+  
 }
+
+
 
 const root = document.getElementById('root');
 if (root) {
@@ -72,9 +73,9 @@ if (root) {
           <Route exact path="/article/:id/edit" component={ArticleEdit} />
           <Route exact path="/new" component={New} />
           <Route exact path="/edit" component={Edit} />
-            <Route exact path="/war" component={War} />
-            <Route exact path="/ting" component={Ting} />
-            <Route exact path="/other" component={Other} />
+            <Route exact path="/war" component={() => <Category category="War"/>} />
+            <Route exact path="/ting" component={() => <Category category="Ting"/>} />
+            <Route exact path="/other" component={() => <Category category="Other"/>} />
         </div>
       </HashRouter>,
       root

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS article;
 
 CREATE TABLE article (
-    article_id INT AUTO_INCREMENT,
+    article_id INT NOT NULL UNSIGNED AUTO_INCREMENT,
     category_id INT NOT NULL,
     title VARCHAR(100),
     summary VARCHAR(150),
@@ -11,4 +11,4 @@ CREATE TABLE article (
     category VARCHAR(20),
     priority TINYINT,
     PRIMARY KEY (article_id)
-);
+)

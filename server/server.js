@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const mysql = require("mysql");
 const fs = require("fs");
 const raw = fs.readFileSync("config.json");
-const config = JSON.parse(raw);
+const config = JSON.parse(raw.toString());
 
 // Import DAO
 const ArticleDao = require("./dao/articledao");

@@ -9,24 +9,6 @@ import { articleService } from './service';
 export class Edit extends Component {
     articles: ArticleObject[] = [];
 
-    constructor(props: React.Component) {
-        super(props);
-
-        articleService.getArticles().then(data => {
-            this.articles = data.map( e =>
-                new ArticleObject(
-                    e.article_id,
-                    e.title,
-                    e.summary,
-                    e.article_text,
-                    e.created_at,
-                    e.image,
-                    e.priority,
-                    'war'
-                )
-            );
-        });
-    }
 
     render(){
         return(
@@ -47,5 +29,22 @@ export class Edit extends Component {
                 ))}
             </div>
         );
+    }
+
+    mounted() {
+        articleService.getArticles().then(data => {
+            this.articles = data.map( e =>
+              new ArticleObject(
+                e.article_id,
+                e.title,
+                e.summary,
+                e.article_text,
+                e.created_at,
+                e.image,
+                e.priority,
+                'war'
+              )
+            );
+        });
     }
 }

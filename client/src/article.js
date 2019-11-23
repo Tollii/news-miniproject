@@ -9,12 +9,13 @@ import { articleService } from "./service";
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 type htmlInput = SyntheticInputEvent<HTMLInputElement>;
 
-export class PreviewArticle extends Component {
+export class PreviewArticle extends Component <{id: number, title: string, body: string, image: string}> {
+
+
   render() {
     return (
       <div>
         <Card style={{ width: '25rem' }} className="card-img-top">
-
           <Card.Img variant="top" src={this.props.image} alt="" />
           <Card.Body>
             <Card.Title>{this.props.title}</Card.Title>
@@ -26,7 +27,7 @@ export class PreviewArticle extends Component {
     );
   }
 }
-export class Article extends Component {
+export class Article extends Component <{ match: { params :{ id: number } } }> {
   title: string = '';
   body: string = '';
   article_text: string = '';
@@ -39,7 +40,7 @@ export class Article extends Component {
     return (
       <div className="articleContainer">
         <h1>{this.title}</h1>
-        <img src={this.image} alt="" width="70%"/>
+        <img src={this.image} alt="" width="50%"/>
         <h4>{this.body}</h4>
         <div className="postDateArticle">{this.created_at}</div>
         <div className="postDateArticle">{this.category}</div>
@@ -61,12 +62,13 @@ export class Article extends Component {
   }
 }
 
-export class ArticleEdit extends Component {
+export class ArticleEdit extends Component <{ match: { params: { id: number} } }>{
   title: string= '';
   body: string = '';
   article_text: string = '';
   image: string = '';
   category: string = '';
+  priority: number = -1;
   form = null;
 
   render() {
@@ -149,20 +151,28 @@ export class ArticleEdit extends Component {
       this.article_text = article.article_text;
       this.image = article.image;
       this.category = article.category;
-      this.priority = article.priority;
+      this.priority = parseInt(article.priority);
     });
   }
 
   delete() {
-    articleService.deleteArticle(this.props.match.params.id).then(res => {
-      console.log(res);
-    });
+    articleService.deleteArticle(this.props.match.params.id);
     history.push('/');
   }
 
   save() {
-    let newCategory = document.querySelector('#editCategorySelector').value;
-    let newPriority = document.querySelector('#editPrioritySelector').value;
+
+    let newCategory: string = "";
+    let newPriority: string = "";
+    let e = document.querySelector('#editCategorySelector');
+    if(e instanceof HTMLSelectElement) newCategory = e.value;
+    e = document.querySelector('#editPrioritySelector');
+    if(e instanceof  HTMLSelectElement) newPriority = e.value;
+
+
+
+
+
 
     if (newCategory === 'Select category' || newPriority === 'Select priority') {
       alert('Choose a category and a priority');

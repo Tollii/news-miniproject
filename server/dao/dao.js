@@ -1,7 +1,6 @@
 // @flow
 
 module.exports = class Dao {
-
   constructor(pool) {
     this.pool = pool;
   }
