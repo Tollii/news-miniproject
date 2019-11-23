@@ -56,7 +56,8 @@ test('add one article from db', done => {
       "summary": "yeet or get yeeted",
       "article_text": "yote",
       "priority": 1,
-      "category": "Other"
+      "category": "Other",
+      "image": "Internett.com"
   }, callback);
 });
 
@@ -74,7 +75,7 @@ test("update article db", done =>{
   function callback1(status, data){
     console.log("Test callback: status=" + status + ", data.length="+ JSON.stringify(data));
     expect(status).toBe(200);
-    done()
+    done();
   }
   function callback2(status, data) {
     console.log("Test callback: status=" + status + ", data.length="+JSON.stringify(data));
@@ -87,7 +88,8 @@ test("update article db", done =>{
     "summary": "yeet or get yeeted",
     "article_text": "yote",
     "priority": 1,
-    "category": "Other"
-  }, 1, callback1());
+    "category": "Other",
+    "image": "Internett.com"
+  }, 1, callback1);
   articleDao.getOne(1, callback2);
 });
