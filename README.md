@@ -4,4 +4,4 @@ A small university project, where the aim was to create a community news site wi
 
 Testing with is done with Jest, and flow is used for type checking.
 
-Original repository on [NTNU's gitlab](https://gitlab.stud.iie.ntnu.no/andrtoln/miniprosjekt)
+Original repository on [NTNU's GitLab](https://gitlab.stud.iie.ntnu.no/andrtoln/miniprosjekt)
