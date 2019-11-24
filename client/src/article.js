@@ -28,6 +28,7 @@ export class PreviewArticle extends Component<{ id: number, title: string, body:
     );
   }
 }
+
 export class Article extends Component<{ match: { params: { id: number } } }> {
   title: string = '';
   body: string = '';
